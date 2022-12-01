@@ -128,9 +128,9 @@ class Words {
                     answerArray[i] = wordArray[i];
                 }
             }
-
-            answer = answerArray.toString(); // тут создается корякозяблик!!!
-            System.out.println("Ви не вгадали, слово виглядає як " + answer.toString());
+            answer = new String(userLineArray);
+            //answer = answerArray.toString(); // тут создается корякозяблик!!!
+            System.out.println("Ви не вгадали, слово виглядає як " + answer);
         }
 
         System.out.println("Кінець, слово було " + word);
