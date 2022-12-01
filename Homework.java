@@ -1,4 +1,7 @@
-import java.util.Arrays;
+
+
+import java.util.Random;
+import java.util.Scanner;
 
 public class Homework {
 
@@ -74,7 +77,62 @@ public class Homework {
     // https: //docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Scanner.html
     //  - java.util.Random для генерації випадкових чисел (індексів)
     // https://docs. oracle.com/en/java/javase/17/docs/api/java.base/java/util/Random.html
-
 }
 
+class Words {
+    // створили масив
+    static String[] words = {"apple", "orange",
+            "lemon", "banana", "apricot", "avocado", "broccoli", "carrot",
+            "cherry", "garlic", "grape", "melon", "leak", "kiwi", "mango",
+            "mushroom", "nut", "olive", " pea", "peanut", "pear", "pepper",
+            "pineapple", "pumpkin", "potato"};
 
+    // 0-24 викидуємо випадкове число, створюємо метод
+    static Random random = new Random();
+
+    public static int getRandom() {
+        return random.nextInt(25);
+    }
+
+    //загадуємо слово із випадкового числа, перетворюємо із випадкового
+    static String word = words[getRandom()];
+    public static void main(String[] args) {
+        System.out.println(word);
+
+        //слово можливо відгадати частинами, наразі воно виглядає так
+        String answer = "###############";
+        char[] answerArray = answer.toCharArray();
+
+        char[] wordArray = word.toCharArray();
+        //є потреба зробити нескінченний цикл для роботи програми
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+
+            //робимо відповідь у вигляді вводу в консоль тексту користувачем
+            String userLine = scanner.nextLine();
+            userLine += "###############";
+            char[] userLineArray = userLine.toCharArray();
+
+            //якщо ми вгадали загадане слово то треба про це повідомити користувача
+            if (userLine.equals(word) || (answer.contains(word))) {
+                break;
+            }
+            // порівнюємо літери і шукаємо однакові
+            // потрібно створити масиви чарів
+
+            for (int i = 0; i < wordArray.length; i++) {
+                System.out.println(wordArray[i]);
+                System.out.println(userLineArray[i]);
+
+                if (wordArray[i] == userLineArray[i]) {
+                    answerArray[i] = wordArray[i];
+                }
+            }
+
+            answer = answerArray.toString(); // тут создается корякозяблик!!!
+            System.out.println("Ви не вгадали, слово виглядає як " + answer.toString());
+        }
+
+        System.out.println("Кінець, слово було " + word);
+    }
+}
