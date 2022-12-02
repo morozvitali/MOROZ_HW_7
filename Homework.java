@@ -51,88 +51,71 @@ public class Homework {
         }
         return true;
     }
-
-
-    //6. * Створити масив зі слів String[] words = {"apple", "orange",
-    // "lemon", "banana", "apricot", "avocado" , "broccoli", "carrot",
-    // "cherry", "garlic", "grape", "melon", "leak", "kiwi", "mango",
-    // "mushroom", "nut", "olive", " pea", "peanut", "pear", "pepper",
-    // "pineapple", "pumpkin", "potato"};
-
-    // При запуску програми комп'ютер загадує слово, запитує відповідь у користувача,
-    // порівнює його із загаданим словом та повідомляє чи правильно відповів користувач.
-    // Якщо слово не вгадано, комп'ютер показує літери, які стоять на своїх місцях.
-
-    // apple – загадане
-    // apricot - відповідь гравця
-    // ap############# (15 символів, щоб користувач не міг дізнатися довжину слова)
-
-    // Для порівняння двох слів посимвольно, можна скористатися:
-    // String str = "apple";
-    // str.charAt(0); - метод, поверне char, який стоїть у слові str на першій позиції
-    // Граємо до тих пір, поки гравець не відгадає слово
-    // Використовуємо лише маленькі літери
-
-    // ВАЖЛИВО: Під час роботи із завданням використовувати класи: - java.util.Scanner для введення інформації через консоль
-    // https: //docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Scanner.html
-    //  - java.util.Random для генерації випадкових чисел (індексів)
-    // https://docs. oracle.com/en/java/javase/17/docs/api/java.base/java/util/Random.html
 }
 
-class Words {
-    // створили масив
-    static String[] words = {"apple", "orange",
-            "lemon", "banana", "apricot", "avocado", "broccoli", "carrot",
-            "cherry", "garlic", "grape", "melon", "leak", "kiwi", "mango",
-            "mushroom", "nut", "olive", " pea", "peanut", "pear", "pepper",
-            "pineapple", "pumpkin", "potato"};
+    //6 Words
 
-    // 0-24 викидуємо випадкове число, створюємо метод
-    static Random random = new Random();
+    class Words {
+        // є масив
+        static String[] words = {"apple", "orange",
+                "lemon", "banana", "apricot", "avocado", "broccoli", "carrot",
+                "cherry", "garlic", "grape", "melon", "leak", "kiwi", "mango",
+                "mushroom", "nut", "olive", " pea", "peanut", "pear", "pepper",
+                "pineapple", "pumpkin", "potato"};
 
-    public static int getRandom() {
-        return random.nextInt(25);
-    }
+        //  викидуємо випадкове число 0-24
+        static Random random = new Random();
 
-    //загадуємо слово із випадкового числа, перетворюємо із випадкового
-    static String word = words[getRandom()];
-    public static void main(String[] args) {
-        System.out.println(word);
+        //загадуємо слово із випадкового числа, перетворюємо із випадкового
+        static String word = words[random.nextInt(25)];
 
-        //слово можливо відгадати частинами, наразі воно виглядає так
-        String answer = "###############";
-        char[] answerArray = answer.toCharArray();
+        public static void main(String[] args) {
 
-        char[] wordArray = word.toCharArray();
-        //є потреба зробити нескінченний цикл для роботи програми
-        Scanner scanner = new Scanner(System.in);
-        while (true) {
+                //слово можливо відгадати частинами, зараз воно виглядає так
+                String answer = "###############";
 
-            //робимо відповідь у вигляді вводу в консоль тексту користувачем
-            String userLine = scanner.nextLine();
-            userLine += "###############";
-            char[] userLineArray = userLine.toCharArray();
+                //перетворюємо слова загадане і яке буде відображатися по частинах умасив чарів
+                char[] answerArray = answer.toCharArray();
+                char[] wordArray = word.toCharArray();
 
-            //якщо ми вгадали загадане слово то треба про це повідомити користувача
-            if (userLine.equals(word) || (answer.contains(word))) {
-                break;
-            }
-            // порівнюємо літери і шукаємо однакові
-            // потрібно створити масиви чарів
+                //є потреба зробити нескінченний цикл для роботи програми
+                Scanner scanner = new Scanner(System.in);
+                while (true) {
 
-            for (int i = 0; i < wordArray.length; i++) {
-                System.out.println(wordArray[i]);
-                System.out.println(userLineArray[i]);
+                //робимо відповідь у вигляді вводу в консоль тексту користувачем
+                System.out.println("Будь ласка, вгадайте загадане слово серед овочів");
+                String userLine = scanner.nextLine();
+                userLine += "###############";
+                char[] userLineArray = userLine.toCharArray();
 
-                if (wordArray[i] == userLineArray[i]) {
-                    answerArray[i] = wordArray[i];
+                //якщо ми вгадали загадане слово то треба про це повідомити користувача
+                //------------------------------------
+                // не зрозумілий ефект
+                if (userLine.equals(word)) {
+                    System.out.println("Ви відгадали відразу");
+                    break;
                 }
-            }
-            answer = new String(userLineArray);
-            //answer = answerArray.toString(); // тут создается корякозяблик!!!
-            System.out.println("Ви не вгадали, слово виглядає як " + answer);
-        }
 
-        System.out.println("Кінець, слово було " + word);
+
+                // порівнюємо літери і шукаємо однакові
+
+                for (int i = 0; i < wordArray.length; i++) {
+
+                    if (wordArray[i] == userLineArray[i]) {
+                        answerArray[i] = wordArray[i];
+                    }
+                }
+                answer = new String(answerArray);
+
+                // Перевірка, чи відгадане вже слово по буквах
+                if (answer.contains(word)) {
+                    System.out.println("Ви відгадали по буквах");
+                    break;
+                }
+
+                System.out.println("Ви не вгадали, слово виглядає як " + answer);
+            }
+
+            System.out.println("Cлово було " + word);
+        }
     }
-}
