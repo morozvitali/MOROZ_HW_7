@@ -72,13 +72,15 @@ class Homework {
 
             System.out.println("Будь ласка, вгадайте загадане слово серед овочів");
             String userLine = scanner.nextLine();
-            userLine += "###############";
-            char[] userLineArray = userLine.toCharArray();
 
             if (userLine.equals(word)) { //якщо ми відгадали слово треба про це повідомити користувача
-                System.out.println("Ви відгадали відразу");
+                System.out.println("Ви відгадали");
                 break;
             }
+            //перетворюємо відповідь у напис маленькими літерами забиваємо рішітками
+            // уникаючи проблем довжини введеного тексту 0
+            userLine = userLine.toLowerCase() + "###############";
+            char[] userLineArray = userLine.toCharArray();
 
             for (int i = 0; i < wordArray.length; i++) { // порівнюємо літери шукаємо однакові
                 if (wordArray[i] == userLineArray[i]) {
