@@ -1,4 +1,4 @@
-package hillel.hw7;
+package src.main.java.hillel.hw7;
 
 import java.util.Random;
 import java.util.Scanner;
