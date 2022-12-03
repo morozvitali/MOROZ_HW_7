@@ -1,27 +1,30 @@
-package words;
+package hillel.hw7;
 
 import java.util.Random;
 import java.util.Scanner;
 
-public class WordHomeWork {
+public class Unit6 {
     private static String[] words = {"apple", "orange",
             "lemon", "banana", "apricot", "avocado", "broccoli", "carrot",
             "cherry", "garlic", "grape", "melon", "leak", "kiwi", "mango",
             "mushroom", "nut", "olive", " pea", "peanut", "pear", "pepper",
             "pineapple", "pumpkin", "potato"};
 
-
     private static Random random = new Random();
     private static String word = words[random.nextInt(25)];
+    private static String answer = "###############";
 
-    public static void wordGame() {
+    public static void wordStartGame() {
 
-        String answer = "###############";
         char[] answerArray = answer.toCharArray();
         char[] wordArray = word.toCharArray();
+        wordDoCalc(wordArray, answerArray);
+        System.out.println("Загадано було " + word);
+    }
 
+
+    public static void wordDoCalc(char[] wordArray, char[] answerArray) {
         Scanner scanner = new Scanner(System.in);
-
 
         while (true) {
             System.out.println("Будь ласка, вгадайте загадане слово");
@@ -46,8 +49,9 @@ public class WordHomeWork {
                 System.out.println("Ви відгадали по буквах");
                 break;
             }
+
             System.out.println("Ви не відгадали, слово виглядає як " + answer);
         }
-        System.out.println("Загадано було " + word);
+
     }
 }
